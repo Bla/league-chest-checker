@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>LCC: League Chest Checker</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="crossorigin="anonymous"></script>
+    <script src="sorttable.js"></script>
+    <script src="league-chest-checker.js"></script>
+    <script src='config.js'></script>
+</head>
+<body>
+    <div class="grid-wrapper">
+        <section>
+            <script>
+                getChestInfo("euw", config.encryptedAccountId, config.rgapiKey);
+            </script>
+            <script>
+                // Search through table
+                function myFunction() {
+                    // Declare variables
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("inputField");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("championsTable");
+                    tr = table.getElementsByTagName("tr");
+                    
+                    // Loop through all table rows, and hide those who don't match the search query
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[1];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } 
+                            else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+        </section>
+        <section>
+            <h1>League Chest Checker</h1>
+            <p>Version: <span id="version"></span></p>
+            <input type="text" id="inputField" onkeyup="myFunction()" placeholder="Enter champion name..">
+
+            <table id="championsTable" class="sortable">
+                <thead>
+                    <tr>
+                        <th class="sorttable_numeric">Champion ID</th>
+                        <th>Champion Name</th>
+                        <th class="sorttable_numeric">Champion Level</th>
+                        <th class="sorttable_numeric">Champion Mastery</th>
+                        <th class="sorttable_numeric">Points for next level</th>
+                        <th>Chest Acquired</th>
+                    </tr>
+                </thead>
+                <tbody id="championsList">
+                    <!-- Data -->
+                </tbody>
+            </table>
+        </section>
+        <footer>
+            League Chest Checker isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
+        </footer>
+    </div>
+</body>
+</html>
