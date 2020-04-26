@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>LCC: League Chest Checker</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="crossorigin="anonymous"></script>
-    <script src="sorttable.js"></script>
-    <script src="league-chest-checker.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+    <script src="js/sorttable.js"></script>
+    <script src="js/league-chest-checker.js"></script>
     <script src='config.js'></script>
 </head>
 <body>
     <div class="grid-wrapper">
         <section>
             <script>
-                getChestInfo("euw", config.encryptedAccountId, config.rgapiKey);
+                getChestInfo("euw", config.summonerName);
             </script>
             <script>
                 // Search through table
@@ -27,7 +27,7 @@
                     
                     // Loop through all table rows, and hide those who don't match the search query
                     for (i = 0; i < tr.length; i++) {
-                        td = tr[i].getElementsByTagName("td")[1];
+                        td = tr[i].getElementsByTagName("td")[0];
                         if (td) {
                             txtValue = td.textContent || td.innerText;
                             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -49,11 +49,10 @@
             <table id="championsTable" class="sortable">
                 <thead>
                     <tr>
-                        <th class="sorttable_numeric">Champion ID</th>
-                        <th>Champion Name</th>
-                        <th class="sorttable_numeric">Champion Level</th>
-                        <th class="sorttable_numeric">Champion Mastery</th>
-                        <th class="sorttable_numeric">Points for next level</th>
+                        <th>Champion</th>
+                        <th class="sorttable_numeric">Level</th>
+                        <th class="sorttable_numeric">Mastery</th>
+                        <th class="sorttable_numeric">Next Level</th>
                         <th>Chest Acquired</th>
                     </tr>
                 </thead>

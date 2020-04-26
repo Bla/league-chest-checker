@@ -1,3 +1,4 @@
-docker-compose.yml
-masterylist.json
+config.py
 config.js
+__pycache__/
+env/
