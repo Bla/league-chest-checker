@@ -5,21 +5,27 @@ function getChampionStats(summonerName, nameList) {
     //var masteryStats = "https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}?api={apiKey}"
     $.getJSON(masteryStats, function(masteryList) {
       for (var x in masteryList) {
-          let championId = masteryList[x].championId;
-          championName = getChampionName(nameList, championId);
-          championLevel = masteryList[x].championLevel;
-          championPoints = masteryList[x].championPoints;
-          pointsToNextLevel = masteryList[x].championPointsUntilNextLevel;
-          chestGranted = masteryList[x].chestGranted;
-          $(championsList).append(
-            "<tr id='" + championId + "'>" + 
-            "<td>" + championName + "</td>" +
-            "<td>" + championLevel + "</td>" +
-            "<td>" + championPoints + "</td>" +
-            "<td>" + pointsToNextLevel + "</td>" +
-            "<td>" + chestGranted + "</td>" +
-            "</tr>"
-            )
+        var championId = masteryList[x].championId;
+        var championName = getChampionName(nameList, championId);
+        var championLevel = masteryList[x].championLevel;
+        var championPoints = masteryList[x].championPoints;
+        var pointsToNextLevel = masteryList[x].championPointsUntilNextLevel;
+        var chestGranted = masteryList[x].chestGranted;
+        var chestImage;
+        if (chestGranted) {
+          chestImage = "<img src='images/hextech-chest.png' width='25px'></img>";
+        } else {
+          chestImage = "<img src='images/hextech-chest-silhouette.png' width='25px'></img>";
+        }
+        $(championsList).append(
+          "<tr id='" + championId + "'>" + 
+          "<td>" + championName + "</td>" +
+          "<td>" + championLevel + "</td>" +
+          "<td>" + championPoints + "</td>" +
+          "<td>" + pointsToNextLevel + "</td>" +
+          "<td>" + "<span style=display:none>" + chestGranted + "</span>" + chestImage + "</td>" +
+          "</tr>"
+          )
       }
       resolve({masteryList});
     })
@@ -31,7 +37,7 @@ function getLatestVersion(region) {
   return new Promise(resolve => {
     var versionsUrl = "https://ddragon.leagueoflegends.com/realms/" + region + ".json";
     $.getJSON(versionsUrl, function(file) {
-      versionNumber = file.n.champion;
+      var versionNumber = file.n.champion;
       document.getElementById("version").innerHTML = versionNumber;
       resolve({versionNumber});
     })
@@ -43,7 +49,7 @@ function getChampionNamesList(versionNumber) {
   return new Promise(resolve => {
     var championsUrl = "http://ddragon.leagueoflegends.com/cdn/" + versionNumber + "/data/en_US/champion.json"
     $.getJSON(championsUrl, function(file) {
-      championList = file;
+      var championList = file;
       resolve({championList});
     })
   })
@@ -51,10 +57,10 @@ function getChampionNamesList(versionNumber) {
 
 // Get champion name from list
 function getChampionName(nameList, championId) {
-  namesList = nameList.championList.data
+  var namesList = nameList.championList.data
   for (var y in namesList) {
     if (namesList[y].key == championId) {
-      name = namesList[y].name;
+      var name = namesList[y].name;
       return name;
     }
   }
