@@ -30,7 +30,7 @@ p {
     color: white;
 }
 
-#summonerInputField {
+input {
     font-size: 16px;
     padding: 10px 20px 10px 20px;
     border: 1px solid #ddd;
@@ -46,6 +46,7 @@ p {
     width: auto;
     font-weight: bold;
     font-size: larger;
+    align-items: center;
 }
 
 #serverName {
@@ -55,7 +56,14 @@ p {
     border-radius: 10px;
     margin-left: -20px;
     z-index: -1;
-    font-size: smaller;
+    font-size: larger;
+    align-items: center;
+}
+
+.icon {
+    font-size: x-large;
+    cursor: pointer;
+    padding-left: 10px;
 }
 
 #dataInput {
@@ -68,10 +76,6 @@ p {
 
 #championInputField {
     visibility: hidden;
-    font-size: 16px;
-    padding: 10px 20px 10px 20px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
 }
 
 #championsTable, #dataSettings {

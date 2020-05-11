@@ -72,19 +72,25 @@
                 <div id="dataInput">
                     <input type="text" id="summonerInputField" placeholder="Enter summoner name..">
                     <select name="dropdown" id="serverList">
-                        <option value="euw" selected>EUW</option>
+                        <option value="br">BR</option>
                         <option value="eune">EUNE</option>
+                        <option value="euw" selected>EUW</option>
+                        <option value="jp">JP</option>
+                        <option value="kr">KR</option>
+                        <option value="lan">LAN</option>
+                        <option value="las">LAS</option>
                         <option value="na">NA</option>
                         <option value="oce">OCE</option>
-                        <option value="kr">KR</option>
+                        <option value="tr">TR</option>
+                        <option value="RU">RU</option>
                     </select>
                     <button type="submit" onclick="processInput()">Search</button>
                 </div>
                 <div id="dataDisplay">
-                    <p>Version: <span id="version"></span></p>
                     <p>
                         <span id="summonerName">SUMMONER</span> <span id="serverName">SERVER</span>
-                        <a onclick="disableDataView()">(CHANGE)</a>
+                        <a class="icon" title="Edit summoner name and/or server" onclick="disableDataView()">&#9998;</a>
+                        <a class="icon" title="Refresh data" onclick="refreshData()">&#8635;</a>
                     </p>
                 </div>
             </div>
@@ -93,7 +99,6 @@
                 <div id="dataSettings">
                     <p>
                         <input type="text" id="championInputField" onkeyup="searchTable()" placeholder="Enter champion name..">
-                        <a onclick="refreshData()">(REFRESH DATA)</a>
                     </p>
                 </div>
                 <thead>

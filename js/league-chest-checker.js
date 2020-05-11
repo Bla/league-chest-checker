@@ -38,7 +38,6 @@ function getLatestVersion(region) {
     var versionsUrl = "https://ddragon.leagueoflegends.com/realms/" + region + ".json";
     $.getJSON(versionsUrl, function(file) {
       var versionNumber = file.n.champion;
-      document.getElementById("version").innerHTML = versionNumber;
       resolve({versionNumber});
     })
   })
