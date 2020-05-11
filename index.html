@@ -16,9 +16,9 @@
                 function searchTable() {
                     // Declare variables
                     var input, filter, table, tr, td, i, txtValue;
-                    input = document.getElementById("championInputField");
+                    input = document.getElementById("championInput");
                     filter = input.value.toUpperCase();
-                    table = document.getElementById("championsTable");
+                    table = document.getElementById("dataTable");
                     tr = table.getElementsByTagName("tr");
                     
                     // Loop through all table rows, and hide those who don't match the search query
@@ -38,28 +38,32 @@
             </script>
             <script>
                 var summoner, server;
+
                 function enableDataView() {
-                    document.getElementById("dataInput").style.display = "none";
-                    document.getElementById("dataDisplay").style.display = "block";
-                    document.getElementById("championInputField").style.visibility = "visible";
-                    document.getElementById("championsTable").style.visibility = "visible";
+                    document.getElementById("inputView").style.display = "none";
+                    document.getElementById("dataView").style.display = "block";
+                    document.getElementById("championInput").style.visibility = "visible";
+                    document.getElementById("dataTable").style.visibility = "visible";
                     document.getElementById("dataSettings").style.visibility = "visible";
                 }
+
                 function disableDataView() {
-                    document.getElementById("dataInput").style.display = "block";
-                    document.getElementById("dataDisplay").style.display = "none";
-                    document.getElementById("championInputField").style.visibility = "hidden";
-                    document.getElementById("championsTable").style.visibility = "hidden";
+                    document.getElementById("inputView").style.display = "block";
+                    document.getElementById("dataView").style.display = "none";
+                    document.getElementById("championInput").style.visibility = "hidden";
+                    document.getElementById("dataTable").style.visibility = "hidden";
                     document.getElementById("dataSettings").style.visibility = "hidden";
                 }
+
                 function processInput() {
-                    summoner = document.getElementById("summonerInputField").value;
+                    summoner = document.getElementById("summonerInput").value;
                     server = document.getElementById("serverList").value;
                     document.getElementById("summonerName").innerHTML = summoner;
                     document.getElementById("serverName").innerHTML = server.toUpperCase();
                     refreshData();
                     enableDataView();
                 }
+
                 function refreshData() {
                     $("#championsList").empty();
                     getChestInfo(server, summoner);
@@ -69,8 +73,8 @@
         <section>
             <h1>League Chest Checker</h1>
             <div>
-                <div id="dataInput">
-                    <input type="text" id="summonerInputField" placeholder="Enter summoner name..">
+                <div id="inputView">
+                    <input type="text" id="summonerInput" placeholder="Enter summoner name..">
                     <select name="dropdown" id="serverList">
                         <option value="br">BR</option>
                         <option value="eune">EUNE</option>
@@ -86,7 +90,7 @@
                     </select>
                     <button type="submit" onclick="processInput()">Search</button>
                 </div>
-                <div id="dataDisplay">
+                <div id="dataView">
                     <p>
                         <span id="summonerName">SUMMONER</span> <span id="serverName">SERVER</span>
                         <a class="icon" title="Edit summoner name and/or server" onclick="disableDataView()">&#9998;</a>
@@ -95,10 +99,10 @@
                 </div>
             </div>
 
-            <table id="championsTable" class="sortable">
+            <table id="dataTable" class="sortable">
                 <div id="dataSettings">
                     <p>
-                        <input type="text" id="championInputField" onkeyup="searchTable()" placeholder="Enter champion name..">
+                        <input type="text" id="championInput" onkeyup="searchTable()" placeholder="Enter champion name..">
                     </p>
                 </div>
                 <thead>

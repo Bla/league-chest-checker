@@ -66,19 +66,19 @@ input {
     padding-left: 10px;
 }
 
-#dataInput {
+#inputView {
     display: block;
 }
 
-#dataDisplay {
+#dataView {
     display: none;
 }
 
-#championInputField {
+#dataTable, #dataSettings {
     visibility: hidden;
 }
 
-#championsTable, #dataSettings {
+#championInput {
     visibility: hidden;
 }
 
