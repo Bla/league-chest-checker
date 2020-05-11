@@ -6,7 +6,7 @@ html {
 
 body {
     display: block;
-    background: url("../images/background.jpg") no-repeat fixed 80%;
+    background: url("../images/background.jpg") #454545 no-repeat fixed 80%;
 	height: 100%;
 }
 
@@ -17,10 +17,65 @@ body {
     grid-template-columns: 100%;
 }
 
-h1, h2, p {
+section {
+    margin-left: 3%;
+}
+
+h1, h2 {
     color: white;
     text-shadow: gray 2px 2px;
-    margin-left: 3%;
+}
+
+p {
+    color: white;
+}
+
+#summonerInputField {
+    font-size: 16px;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#summonerName {
+    position: relative;
+    background: steelblue;
+    padding: 5px 10px;
+    border-radius: 10px;
+    white-space: nowrap;
+    width: auto;
+    font-weight: bold;
+    font-size: larger;
+}
+
+#serverName {
+    position: relative;
+    background: midnightblue;
+    padding: 5px 10px 5px 25px;
+    border-radius: 10px;
+    margin-left: -20px;
+    z-index: -1;
+    font-size: smaller;
+}
+
+#dataInput {
+    display: block;
+}
+
+#dataDisplay {
+    display: none;
+}
+
+#championInputField {
+    visibility: hidden;
+    font-size: 16px;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#championsTable, #dataSettings {
+    visibility: hidden;
 }
 
 table {
@@ -29,7 +84,6 @@ table {
     border-collapse: collapse;
     border: 1px solid #ddd;
     font-size: 18px;
-    margin-left: 3%;
     margin-bottom: 5%;
 }
 
@@ -52,16 +106,8 @@ th {
     height: 30px;
 }
 
-#inputField {
-    /* background-image: url("/css/searchicon.png");
-    background-position: 10px 12px;
-    background-repeat: no-repeat;
-    width: 810px; */
-    font-size: 16px;
-    padding: 10px 20px 10px 20px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-    margin-left: 3%;
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE" 
 }
 
 footer {

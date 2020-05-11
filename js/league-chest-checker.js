@@ -1,7 +1,7 @@
 // Get player's mastery stats from LoL API
-function getChampionStats(summonerName, nameList) {
+function getChampionStats(summonerName, nameList, region) {
   return new Promise(resolve => {
-    var masteryStats = "http://localhost:5000/api/" + summonerName // custom API endpoint with server-side request handling
+    var masteryStats = "http://localhost:5000/api/" + region + "/" + summonerName // custom API endpoint with server-side request handling
     //var masteryStats = "https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}?api={apiKey}"
     $.getJSON(masteryStats, function(masteryList) {
       for (var x in masteryList) {
@@ -71,7 +71,7 @@ const getChestInfo = async function(region, summonerName){
   try {
     const latestVersion = await getLatestVersion(region);
     const championNamesList = await getChampionNamesList(latestVersion.versionNumber);
-    const masteryStats = await getChampionStats(summonerName, championNamesList);
+    const masteryStats = await getChampionStats(summonerName, championNamesList, region);
   }catch (e){
       //handle errors as needed
       console.log("Error")

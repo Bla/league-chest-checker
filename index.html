@@ -7,20 +7,16 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
     <script src="js/sorttable.js"></script>
     <script src="js/league-chest-checker.js"></script>
-    <script src='config.js'></script>
 </head>
 <body>
     <div class="grid-wrapper">
         <section>
             <script>
-                getChestInfo("euw", config.summonerName);
-            </script>
-            <script>
                 // Search through table
-                function myFunction() {
+                function searchTable() {
                     // Declare variables
                     var input, filter, table, tr, td, i, txtValue;
-                    input = document.getElementById("inputField");
+                    input = document.getElementById("championInputField");
                     filter = input.value.toUpperCase();
                     table = document.getElementById("championsTable");
                     tr = table.getElementsByTagName("tr");
@@ -40,21 +36,73 @@
                     }
                 }
             </script>
+            <script>
+                var summoner, server;
+                function enableDataView() {
+                    document.getElementById("dataInput").style.display = "none";
+                    document.getElementById("dataDisplay").style.display = "block";
+                    document.getElementById("championInputField").style.visibility = "visible";
+                    document.getElementById("championsTable").style.visibility = "visible";
+                    document.getElementById("dataSettings").style.visibility = "visible";
+                }
+                function disableDataView() {
+                    document.getElementById("dataInput").style.display = "block";
+                    document.getElementById("dataDisplay").style.display = "none";
+                    document.getElementById("championInputField").style.visibility = "hidden";
+                    document.getElementById("championsTable").style.visibility = "hidden";
+                    document.getElementById("dataSettings").style.visibility = "hidden";
+                }
+                function processInput() {
+                    summoner = document.getElementById("summonerInputField").value;
+                    server = document.getElementById("serverList").value;
+                    document.getElementById("summonerName").innerHTML = summoner;
+                    document.getElementById("serverName").innerHTML = server.toUpperCase();
+                    refreshData();
+                    enableDataView();
+                }
+                function refreshData() {
+                    $("#championsList").empty();
+                    getChestInfo(server, summoner);
+                }
+            </script>
         </section>
         <section>
             <h1>League Chest Checker</h1>
-            <p>Version: <span id="version"></span></p>
-            
+            <div>
+                <div id="dataInput">
+                    <input type="text" id="summonerInputField" placeholder="Enter summoner name..">
+                    <select name="dropdown" id="serverList">
+                        <option value="euw" selected>EUW</option>
+                        <option value="eune">EUNE</option>
+                        <option value="na">NA</option>
+                        <option value="oce">OCE</option>
+                        <option value="kr">KR</option>
+                    </select>
+                    <button type="submit" onclick="processInput()">Search</button>
+                </div>
+                <div id="dataDisplay">
+                    <p>Version: <span id="version"></span></p>
+                    <p>
+                        <span id="summonerName">SUMMONER</span> <span id="serverName">SERVER</span>
+                        <a onclick="disableDataView()">(CHANGE)</a>
+                    </p>
+                </div>
+            </div>
 
             <table id="championsTable" class="sortable">
-                <input type="text" id="inputField" onkeyup="myFunction()" placeholder="Enter champion name..">
+                <div id="dataSettings">
+                    <p>
+                        <input type="text" id="championInputField" onkeyup="searchTable()" placeholder="Enter champion name..">
+                        <a onclick="refreshData()">(REFRESH DATA)</a>
+                    </p>
+                </div>
                 <thead>
                     <tr>
                         <th>Champion</th>
                         <th class="sorttable_numeric">Level</th>
                         <th class="sorttable_numeric">Mastery</th>
                         <th class="sorttable_numeric">Next Level</th>
-                        <th>Chest Acquired</th>
+                        <th>Chest</th>
                     </tr>
                 </thead>
                 <tbody id="championsList">
