@@ -74,11 +74,7 @@ input {
     display: none;
 }
 
-#dataTable, #dataSettings {
-    visibility: hidden;
-}
-
-#championInput {
+#dataTable, #championInput {
     visibility: hidden;
 }
 

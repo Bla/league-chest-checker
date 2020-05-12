@@ -42,17 +42,15 @@
                 function enableDataView() {
                     document.getElementById("inputView").style.display = "none";
                     document.getElementById("dataView").style.display = "block";
-                    document.getElementById("championInput").style.visibility = "visible";
                     document.getElementById("dataTable").style.visibility = "visible";
-                    document.getElementById("dataSettings").style.visibility = "visible";
+                    document.getElementById("championInput").style.visibility = "visible";
                 }
 
                 function disableDataView() {
                     document.getElementById("inputView").style.display = "block";
                     document.getElementById("dataView").style.display = "none";
-                    document.getElementById("championInput").style.visibility = "hidden";
                     document.getElementById("dataTable").style.visibility = "hidden";
-                    document.getElementById("dataSettings").style.visibility = "hidden";
+                    document.getElementById("championInput").style.visibility = "hidden";
                 }
 
                 function processInput() {
@@ -74,7 +72,7 @@
             <h1>League Chest Checker</h1>
             <div>
                 <div id="inputView">
-                    <input type="text" id="summonerInput" placeholder="Enter summoner name..">
+                    <input type="search" id="summonerInput" placeholder="Enter summoner name..">
                     <select name="dropdown" id="serverList">
                         <option value="br">BR</option>
                         <option value="eune">EUNE</option>
@@ -101,9 +99,9 @@
 
             <table id="dataTable" class="sortable">
                 <div id="dataSettings">
-                    <p>
-                        <input type="text" id="championInput" onkeyup="searchTable()" placeholder="Enter champion name..">
-                    </p>
+                    <div>
+                        <input type="search" id="championInput" oninput="searchTable()" placeholder="Enter champion name..">
+                    </div>
                 </div>
                 <thead>
                     <tr>
