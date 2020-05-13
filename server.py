@@ -11,28 +11,27 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def mastery_stats(region, summoner_name):
     API_KEY = config.RIOT_API_KEY
     if region == "br":
-        api_region = "br1"
+        api_url = "https://br1.api.riotgames.com/lol/"
     elif region == "eune":
-        api_region = "eun1"
+        api_url = "https://eun1.api.riotgames.com/lol/"
     elif region == "euw":
-        api_region = "euw1"
+        api_url = "https://euw1.api.riotgames.com/lol/"
     elif region == "jp":
-        api_region = "jp1"
+        api_url = "https://jp1.api.riotgames.com/lol/"
     elif region == "kr":
-        api_region = "kr"
+        api_url = "https://kr.api.riotgames.com/lol/"
     elif region == "lan":
-        api_region = "la1"
+        api_url = "https://la1.api.riotgames.com/lol/"
     elif region == "las":
-        api_region = "la2"
+        api_url = "https://la2.api.riotgames.com/lol/"
     elif region == "na":
-        api_region = "na1"
+        api_url = "https://na1.api.riotgames.com/lol/"
     elif region == "oce":
-        api_region = "oc1"
+        api_url = "https://oc1.api.riotgames.com/lol/"
     elif region == "tr":
-        api_region = "tr1"
+        api_url = "https://tr1.api.riotgames.com/lol/"
     elif region == "ru":
-        api_region = "ru"
-    api_url = "https://" + api_region + ".api.riotgames.com/lol/"
+        api_url = "https://ru.api.riotgames.com/lol/"
     summoner_endpoint = api_url + "summoner/v4/summoners/by-name/" + summoner_name + "?api_key=" + API_KEY
     summoner_id = requests.get(summoner_endpoint).json()['id']
     mastery_endpoint = api_url + "champion-mastery/v4/champion-masteries/by-summoner/" + summoner_id + "?api_key=" + API_KEY
