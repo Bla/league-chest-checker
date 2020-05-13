@@ -62,9 +62,10 @@
                     enableDataView();
                 }
 
-                function refreshData() {
+                async function refreshData() {
                     $("#championsList").empty();
-                    getChestInfo(server, summoner);
+                    await getChestInfo(server, summoner);
+                    searchTable();
                 }
             </script>
         </section>
