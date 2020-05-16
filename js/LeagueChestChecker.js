@@ -1,8 +1,10 @@
+const HOST = "https://example-url.com/" // Host URL for API proxy
+
 // Get player's mastery stats from LoL API
 function getChampionStats(summonerName, nameList, region) {
   return new Promise(resolve => {
-    var masteryStats = "http://localhost:5000/api/" + region + "/" + summonerName // custom API endpoint with server-side request handling
-    //var masteryStats = "https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}?api={apiKey}"
+    var masteryStats = HOST + "api/" + region + "/" + summonerName // custom API proxy with server-side request handling
+    //var masteryStats = "https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}?api={apiKey}"  // direct connection to RIOT API
     $.getJSON(masteryStats, function(masteryList) {
       for (var x in masteryList) {
         var championId = masteryList[x].championId;
@@ -47,7 +49,7 @@ function getLatestVersion(region) {
 // Get champion names list from ddragon
 function getChampionNamesList(versionNumber) {
   return new Promise(resolve => {
-    var championsUrl = "http://ddragon.leagueoflegends.com/cdn/" + versionNumber + "/data/en_US/champion.json"
+    var championsUrl = "https://ddragon.leagueoflegends.com/cdn/" + versionNumber + "/data/en_US/champion.json"
     $.getJSON(championsUrl, function(file) {
       var championList = file;
       resolve({championList});

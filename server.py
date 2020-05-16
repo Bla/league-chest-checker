@@ -1,5 +1,4 @@
 from flask import Flask, json
-from flask_cors import CORS
 import requests
 import config
 
@@ -7,6 +6,11 @@ app = Flask(__name__, static_folder="")
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 API_KEY = config.RIOT_API_KEY
+# API_KEY = (os.environ['RGAPI_KEY']) # RGAPI key as Heroku config var
+
+@app.route('/')
+def root():
+    return app.send_static_file('index.html')
 
 @app.route('/api/<string:region>/<string:summoner_name>', methods=['GET'])
 def mastery_stats(region, summoner_name):
