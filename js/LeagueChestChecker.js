@@ -1,10 +1,7 @@
-// Host URL for API proxy
-const HOST = "https://league-chest-checker.herokuapp.com/"
-
 // Get player's mastery stats from LoL API
 function getChampionStats(summonerName, nameList, region) {
   return new Promise(resolve => {
-    var masteryStats = HOST + "api/" + region + "/" + summonerName // custom API proxy with server-side request handling
+    var masteryStats = "/api/" + region + "/" + summonerName // custom API proxy with server-side request handling
     //var masteryStats = "https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}?api={apiKey}"  // direct connection to RIOT API
     $.getJSON(masteryStats, function(masteryList) {
       for (var x in masteryList) {
@@ -26,7 +23,6 @@ function getChampionStats(summonerName, nameList, region) {
           "<td>" + championLevel + "</td>" +
           "<td>" + championPoints + "</td>" +
           "<td>" + pointsToNextLevel + "</td>" +
-
           "<td data-chest-value='" + chestGranted + "'>" + chestImage + "</td>" +
           "</tr>"
           )

@@ -38,3 +38,6 @@ def mastery_stats(region, summoner_name):
     mastery_endpoint = api_url + "champion-mastery/v4/champion-masteries/by-summoner/" + summoner_id + "?api_key=" + API_KEY
     result = requests.get(mastery_endpoint)
     return result.text
+
+if __name__ == '__main__':
+    app.run()
