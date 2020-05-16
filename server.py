@@ -6,10 +6,10 @@ import config
 app = Flask(__name__, static_folder="")
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
+API_KEY = config.RIOT_API_KEY
 
 @app.route('/api/<string:region>/<string:summoner_name>', methods=['GET'])
 def mastery_stats(region, summoner_name):
-    API_KEY = config.RIOT_API_KEY
     if region == "br":
         api_url = "https://br1.api.riotgames.com/lol/"
     elif region == "eune":
