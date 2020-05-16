@@ -3,15 +3,11 @@ var summoner, server;
 function enableDataView() {
     document.getElementById("inputView").style.display = "none";
     document.getElementById("dataView").style.display = "block";
-    document.getElementById("dataTable").style.visibility = "visible";
-    document.getElementById("championInput").style.visibility = "visible";
 }
 
 function disableDataView() {
     document.getElementById("inputView").style.display = "block";
     document.getElementById("dataView").style.display = "none";
-    document.getElementById("dataTable").style.visibility = "hidden";
-    document.getElementById("championInput").style.visibility = "hidden";
 }
 
 function processInput() {
@@ -31,19 +27,49 @@ async function refreshData() {
 
 // Search through table
 function searchTable() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("championInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("dataTable");
-    tr = table.getElementsByTagName("tr");
+    var input = document.getElementById("championInput");
+    var filter = input.value.toUpperCase();
+    var expCheckbox = document.getElementById("remainingExpFilter");
+    var chestCheckbox = document.getElementById("chestFilter");
+    var table = document.getElementById("dataTable");
+    var tr = table.getElementsByTagName("tr");
     
-    // Loop through all table rows, and hide those who don't match the search query
+    // Loop through all table rows, and hide those which don't match the search query
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
+        var tdName = tr[i].getElementsByTagName("td")[0];
+        var tdNextLevel = tr[i].getElementsByTagName("td")[3];
+        var tdChest = tr[i].getElementsByTagName("td")[4];
+        if (tdName) {
+            txtValue = tdName.textContent || tdName.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } 
+            else {
+                tr[i].style.display = "none";
+            }
+        }
+
+        // Apply filters
+        if ((tdNextLevel && (expCheckbox.checked == true)) && (tdChest && (chestCheckbox.checked == false)) && (tr[i].style.display == "")) {
+            expValue = tdNextLevel.textContent || tdNextLevel.innerText;
+            if (parseInt(expValue, 10) > 0) {
+                tr[i].style.display = "";
+            } 
+            else {
+                tr[i].style.display = "none";
+            }
+        }
+        if ((tdNextLevel && (expCheckbox.checked == false)) && (tdChest && (chestCheckbox.checked == true)) && (tr[i].style.display == "")) {
+            if (tdChest.getAttribute('data-chest-value') == "false") {
+                tr[i].style.display = "";
+            }
+            else {
+                tr[i].style.display = "none";
+            }
+        }
+        if ((tdNextLevel && (expCheckbox.checked == true)) && (tdChest && (chestCheckbox.checked == true)) && (tr[i].style.display == "")) {
+            expValue = tdNextLevel.textContent || tdNextLevel.innerText;
+            if ((parseInt(expValue, 10) > 0) && (tdChest.getAttribute('data-chest-value') == "false")) {
                 tr[i].style.display = "";
             } 
             else {

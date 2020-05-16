@@ -34,7 +34,8 @@ input {
     font-size: 16px;
     padding: 10px 20px 10px 20px;
     border: 1px solid #ddd;
-    margin-bottom: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #summonerName {
@@ -72,10 +73,6 @@ input {
 
 #dataView {
     display: none;
-}
-
-#dataTable, #championInput {
-    visibility: hidden;
 }
 
 table {

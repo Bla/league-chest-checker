@@ -23,7 +23,8 @@ function getChampionStats(summonerName, nameList, region) {
           "<td>" + championLevel + "</td>" +
           "<td>" + championPoints + "</td>" +
           "<td>" + pointsToNextLevel + "</td>" +
-          "<td>" + "<span style=display:none>" + chestGranted + "</span>" + chestImage + "</td>" +
+
+          "<td data-chest-value='" + chestGranted + "'>" + chestImage + "</td>" +
           "</tr>"
           )
       }
