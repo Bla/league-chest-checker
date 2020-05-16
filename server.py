@@ -1,12 +1,9 @@
 from flask import Flask, json
 import requests
-import config
+import os
 
 app = Flask(__name__, static_folder="")
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
-API_KEY = config.RIOT_API_KEY
-# API_KEY = (os.environ['RGAPI_KEY']) # RGAPI key as Heroku config var
+API_KEY = (os.environ['RGAPI_KEY'])
 
 @app.route('/')
 def root():

@@ -1,4 +1,5 @@
-const HOST = "https://example-url.com/" // Host URL for API proxy
+// Host URL for API proxy
+const HOST = "https://league-chest-checker.herokuapp.com/"
 
 // Get player's mastery stats from LoL API
 function getChampionStats(summonerName, nameList, region) {
