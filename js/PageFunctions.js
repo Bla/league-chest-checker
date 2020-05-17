@@ -10,13 +10,19 @@ function disableDataView() {
     document.getElementById("dataView").style.display = "none";
 }
 
-function processInput() {
+async function processInput() {
     summoner = document.getElementById("summonerInput").value;
     server = document.getElementById("serverList").value;
     document.getElementById("summonerName").innerHTML = summoner;
     document.getElementById("serverName").innerHTML = server.toUpperCase();
-    refreshData();
-    enableDataView();
+    try {
+        await refreshData();
+        enableDataView();
+    }
+    // TODO: Fix error handling
+    catch (err) {
+        document.getElementById("InputView").innerHTML = err.message;
+    }
 }
 
 async function refreshData() {
