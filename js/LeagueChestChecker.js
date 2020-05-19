@@ -37,7 +37,7 @@ function getLatestVersion(region) {
   return new Promise(resolve => {
     var versionsUrl = "https://ddragon.leagueoflegends.com/realms/" + region + ".json";
     $.getJSON(versionsUrl, function(file) {
-      var versionNumber = file.n.champion;
+      var versionNumber = file.n.champion.slice(0,13);
       resolve({versionNumber});
     })
   })
